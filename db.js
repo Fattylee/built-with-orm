@@ -47,8 +47,7 @@ Product.prototype.findSimilar = function findSimilar() {
   }).then((res) => res.filter((p) => p.id !== this.id));
 };
 
-hhh;
-const syncAndSeed = async () => {
+export const syncAndSeed = async () => {
   try {
     await conn.sync({ force: true });
     debug('connection to db started!');
@@ -56,6 +55,7 @@ const syncAndSeed = async () => {
       Category.create({ name: 'category a' }),
       Category.create({ name: 'category b' }),
     ]);
+    // eslint-disable-next-line
     const [productA1, productA2, productA3, productB1] = await Promise.all([
       Product.create({ name: 'product a 1', categoryId: categoryA.id }),
       Product.create({ name: 'product a 2', categoryId: categoryA.id }),
@@ -74,17 +74,22 @@ const syncAndSeed = async () => {
     // const res = await Product.findAll({ where: { name: 'product a 1' } });
     // const res = await Product.findAll({ where: { inStock: true } });
     // const res = await Product.findInStock();
-    const res = await productA1.findSimilar();
+    await productA1.findSimilar();
 
     // const res = await Product.findByPk(productB1.id);
     // const res = await Product.findOne({ where: { id: productB1.id } });
     // const res = await Product.findOne({ where: { name: 'yeye' } });
     // debug(res && res.get());
-    debug(res.map((e) => e.get()));
+    // debug(res.map((e) => e.get()));
     // debug(res.length);
   } catch (err) {
     debug('something went wrong, could not connect', err);
   }
 };
 
-syncAndSeed();
+// syncAndSeed();
+const db = {
+  Product,
+  Category,
+};
+export default db;
