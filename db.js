@@ -1,8 +1,10 @@
 import Sequelize from 'sequelize';
 import d from 'debug';
+import dotEnv from 'dotenv';
 
+dotEnv.config();
 const debug = d('active');
-const connectionStr = 'postgres://u0_a100@localhost/my_noob';
+const connectionStr = process.env.CONNECTION_STRING;
 const conn = new Sequelize(connectionStr);
 const Product = conn.define('product', {
   id: {
@@ -39,6 +41,9 @@ Category.hasMany(Product);
 Product.findInStock = function findInStock() {
   return this.findAll({ where: { inStock: true } });
 };
+Product.prototype.findSimilar = function findSimilar() {
+  return Product.findAll({ where: { categoryId: this.categoryId } }).then((res) => res.filter((p) => p.id !== this.id));
+};
 
 const syncAndSeed = async () => {
   try {
@@ -65,14 +70,15 @@ const syncAndSeed = async () => {
      * ); */
     // const res = await Product.findAll({ where: { name: 'product a 1' } });
     // const res = await Product.findAll({ where: { inStock: true } });
-    const res = await Product.findInStock();
+    // const res = await Product.findInStock();
+    const res = await productA1.findSimilar();
 
     // const res = await Product.findByPk(productB1.id);
     // const res = await Product.findOne({ where: { id: productB1.id } });
     // const res = await Product.findOne({ where: { name: 'yeye' } });
     // debug(res && res.get());
-    // debug(res.map((e) => e.get()));
-    debug(res.length);
+    debug(res.map((e) => e.get()));
+    // debug(res.length);
   } catch (err) {
     debug('something went wrong, could not connect', err);
   }
