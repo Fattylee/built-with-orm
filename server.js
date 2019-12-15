@@ -8,6 +8,10 @@ app.use(volleyball);
 app.get("/api/v1/products", async (req, res) => {
   res.send(await db.Product.findAll());
 });
+// eslint-disable-next-line
+app.get("/api/v1/categories", async (req, res) => {
+  res.send(await db.Category.findAll());
+});
 const port = process.env.PORT || 3000;
 syncAndSeed().then(() => {
   app.listen(port, console.log(`Server is running on port: ${port}`));
