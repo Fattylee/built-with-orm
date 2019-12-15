@@ -42,12 +42,9 @@ Product.findInStock = function findInStock() {
   return this.findAll({ where: { inStock: true } });
 };
 Product.prototype.findSimilar = function findSimilar() {
-  return Product.findAll({
-    where: { categoryId: this.categoryId },
-  }).then((res) => res.filter((p) => p.id !== this.id));
+  return Product.findAll({ where: { categoryId: this.categoryId } }).then((res) => res.filter((p) => p.id !== this.id));
 };
 
-hhh;
 const syncAndSeed = async () => {
   try {
     await conn.sync({ force: true });

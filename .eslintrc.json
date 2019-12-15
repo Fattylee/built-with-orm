@@ -18,6 +18,7 @@
   },
   "plugins": ["react"],
   "rules": {
-    "max-len": ["error", { "code": 80 }]
+    //    "import/no-extraneous-dependencies": "off"
   }
 }
+
