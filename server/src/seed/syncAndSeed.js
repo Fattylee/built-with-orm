@@ -1,56 +1,13 @@
-import Sequelize from 'sequelize';
 import d from 'debug';
-import dotEnv from 'dotenv';
+import Product from '../models/Product';
+import Category from '../models/Category';
+import db from '../db';
 
-dotEnv.config();
 const debug = d('active');
-const connectionStr = process.env.CONNECTION_STRING;
-const conn = new Sequelize(connectionStr);
-const Product = conn.define('product', {
-  id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-  },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  inStock: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
-  },
-});
-
-const Category = conn.define('category', {
-  id: {
-    type: Sequelize.UUID,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-  },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-  },
-});
-// Product.belongsTo(Category);
-Category.hasMany(Product);
-Product.findInStock = function findInStock() {
-  return this.findAll({ where: { inStock: true } });
-};
-Product.prototype.findSimilar = function findSimilar() {
-  return Product.findAll({
-    where: { categoryId: this.categoryId },
-  }).then((res) => res.filter((p) => p.id !== this.id));
-};
-
-export const syncAndSeed = async () => {
+const syncAndSeed = async () => {
   try {
-    await conn.sync({ force: true });
-    debug('connection to db started!');
+    await db.sync({ force: true });
+    debug('connection to db was successful');
     const [categoryA, categoryB] = await Promise.all([
       Category.create({ name: 'category a' }),
       Category.create({ name: 'category b' }),
@@ -87,9 +44,4 @@ export const syncAndSeed = async () => {
   }
 };
 
-// syncAndSeed();
-const db = {
-  Product,
-  Category,
-};
-export default db;
+export default syncAndSeed;

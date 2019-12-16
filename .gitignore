@@ -1,3 +1,5 @@
 **/*.swp
 node_modules
 .env
+server/bundle
+server/bundle/db.js server/bundle/index.js server/bundle/models/Category.js server/bundle/models/Product.js server/bundle/routes/category.js server/bundle/routes/product.js server/bundle/seed/syncAndSeed.js
