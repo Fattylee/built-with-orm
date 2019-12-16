@@ -1,8 +1,9 @@
 import express from 'express';
 import volleyball from 'volleyball';
-import db, { syncAndSeed } from './db';
+// import db from './db';
 import product from './routes/product';
 import category from './routes/category';
+import syncAndSeed from './seed/syncAndSeed';
 
 const app = express();
 app.use(volleyball);
