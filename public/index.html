@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React single page</title>
+    <script src="/js/eruda.min.js"></script>
+    <script>
+      eruda.init();
+    </script>
+    <script src="js/eruda-code.min.js"></script>
+    <script>
+      eruda.add(erudaCode);
+    </script>
+    <script src="js/eruda-dom.min.js"></script>
+    <script>
+      eruda.add(erudaDom);
+    </script>
+  </head>
+  <body>
+    <h1>Welcome to a single page app!</h1>
+    <ul>
+      <li>list one</li>
+      <li>list two</li>
+      <li>list three</li>
+      <li>list four</li>
+      <li>list five</li>
+      <li>list six</li>
+    </ul>
+    <!-- bootsrap all react code here -->
+    <div id="fake"></div>
+    <script src="/js/react.production.min.js"></script>
+    <script src="/js/react-dom.production.min.js"></script>
+    <script src="/js/bundle.js"></script>
+  </body>
+</html>
