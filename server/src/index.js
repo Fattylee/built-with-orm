@@ -2,6 +2,7 @@ import express from 'express';
 import volleyball from 'volleyball';
 import path from 'path';
 import d from 'debug';
+import cors from 'cors';
 import product from './routes/product';
 import category from './routes/category';
 import syncAndSeed from './seed/syncAndSeed';
@@ -14,6 +15,7 @@ app.get('/baba', (req, res) => {
   res.sendFile(path.join(__dirname, '../../client/index.html'));
 });
 app.use(volleyball);
+app.use(cors());
 app.use('/api/v1', category);
 app.use('/api/v1', product);
 
