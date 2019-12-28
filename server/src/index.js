@@ -1,23 +1,26 @@
 import express from 'express';
 import volleyball from 'volleyball';
 import path from 'path';
-import d from 'debug';
+import cors from 'cors';
 import product from './routes/product';
 import category from './routes/category';
-import syncAndSeed from './seed/syncAndSeed';
-
-const debug = d('active');
 
 const app = express();
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.get('/baba', (req, res) => {
   res.sendFile(path.join(__dirname, '../../client/index.html'));
 });
-app.use(volleyball);
+if (process.env.NODE_ENV !== 'test') {
+  app.use(volleyball);
+}
+app.use(cors());
+app.get('/foo', (req, res) => res.send({ data: 'foo bar' }));
+app.post('/foo', (req, res) => res.status(201).send({
+  data: req.body.foo.toUpperCase(),
+}));
+app.get('/head', (req, res) => res.status(200).send(req.headers.abu));
 app.use('/api/v1', category);
 app.use('/api/v1', product);
 
-const port = process.env.PORT || 3000;
-syncAndSeed().then(() => {
-  app.listen(port, debug(`Server is running on port: ${port}`));
-});
+export default app;

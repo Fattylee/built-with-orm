@@ -1,6 +1,7 @@
 import d from 'debug';
 import Product from '../models/Product';
 import Category from '../models/Category';
+import User from '../models/User';
 import db from '../db';
 
 const debug = d('active');
@@ -8,9 +9,32 @@ const syncAndSeed = async () => {
   try {
     await db.sync({ force: true });
     debug('connection to db was successful');
-    const [categoryA, categoryB] = await Promise.all([
-      Category.create({ name: 'category a' }),
-      Category.create({ name: 'category b' }),
+    const users = [
+      {
+        firstName: 'fatai',
+        lastName: 'balogun',
+      },
+      {
+        firstName: 'haleemath',
+        lastName: 'balogun',
+      },
+      {
+        firstName: 'abdullah',
+        lastName: 'abdulFattah',
+      },
+    ];
+    /* eslint-disable */
+    const [fatai, haleemath, abdullah] = await Promise.all(
+      users.map((user) => User.create(user)),
+    );
+    /* eslint-enable */
+    debug(fatai.get());
+    /* eslint-disable-next-line */
+    const [categoryA, categoryB, categoryC, categoryD] = await Promise.all([
+      Category.create({ name: 'category a', ownerId: fatai.id }),
+      Category.create({ name: 'category b', ownerId: abdullah.id }),
+      Category.create({ name: 'category c', ownerId: haleemath.id }),
+      Category.create({ name: 'category d', ownerId: haleemath.id }),
     ]);
     // eslint-disable-next-line
     const [productA1, productA2, productA3, productB1] = await Promise.all([
@@ -19,6 +43,8 @@ const syncAndSeed = async () => {
       Product.create({ name: 'product a 3', categoryId: categoryA.id }),
       Product.create({ name: 'product b 1', categoryId: categoryB.id }),
       Product.create({ name: 'product c 1' }),
+      Product.create({ name: 'product d', categoryId: categoryD.id }),
+      Product.create({ name: 'product d 2', categoryId: categoryD.id }),
     ]);
     /* debug(
      *   categoryA.get(),

@@ -2,6 +2,8 @@
   "env": {
     "browser": true,
     "es6": true,
+    "jest": true,
+    "mocha": true,
     "node": true
   },
   "extends": ["plugin:react/recommended", "airbnb"],
@@ -19,6 +21,7 @@
   "plugins": ["react"],
   "rules": {
     "max-len": ["error", { "code": 80 }],
-    "no-console": "off"
+    "no-console": "off",
+    "arrow-parens": ["error", "always"]
   }
 }
