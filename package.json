@@ -20,6 +20,7 @@
     "@babel/plugin-transform-runtime": "@latest",
     "chai": "^4.2.0",
     "cors": "2.8.5",
+    "cross-env": "^6.0.3",
     "debug": "@latest",
     "dotenv": "8.2.0",
     "express": "^4.17.1",
