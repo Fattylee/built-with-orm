@@ -24,7 +24,7 @@ class App extends React.Component {
     const { products } = this.state;
     const list = (
       <ul>
-        // eslint-disable-next-line
+        {/* eslint-disable-next-line */}
         {products.map((p) => (
           <li key={p.id}>{p.name}</li>
         ))}
