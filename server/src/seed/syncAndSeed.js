@@ -23,9 +23,11 @@ const syncAndSeed = async () => {
         lastName: 'abdulFattah',
       },
     ];
+    /* eslint-disable */
     const [fatai, haleemath, abdullah] = await Promise.all(
       users.map((user) => User.create(user)),
     );
+    /* eslint-enable */
     debug(fatai.get());
     /* eslint-disable-next-line */
     const [categoryA, categoryB, categoryC, categoryD] = await Promise.all([
