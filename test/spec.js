@@ -32,6 +32,12 @@ describe('my app', () => {
       .then((res) => expect(res.body.data).to.equal('BAR')));
   });
   describe('Get api/v1', () => {
+    it('get all categories', () => request
+      .get('/api/v1/categories')
+      .expect(200)
+      .then((res) => {
+        expect(res.body.length).to.equal(4);
+      }));
     it('get all products', () => request
       .get('/api/v1/products')
       .expect(200)
