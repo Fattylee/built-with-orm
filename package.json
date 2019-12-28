@@ -16,8 +16,8 @@
     "browserify": "nodemon --exec \"browserify public/js/index.js -o public/js/bundle.js \" -w public/js/index.js"
   },
   "dependencies": {
-    "@babel/runtime": "@latest",
-    "@babel/plugin-transform-runtime": "@latest",
+    "@babel/runtime": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
     "chai": "^4.2.0",
     "cors": "2.8.5",
     "cross-env": "^6.0.3",
@@ -28,6 +28,20 @@
     "supertest": "^4.0.2",
     "sequelize": "^5.21.3",
     "volleyball": "^1.5.1"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.7.7",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.8.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^24.9.0",
+    "mocha": "^6.2.2",
+    "prettier": "^1.19.1"
   },
   "keywords": [
     "js",
