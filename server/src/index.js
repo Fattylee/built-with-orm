@@ -11,7 +11,8 @@ app.use(express.static(path.join(__dirname, '../../public')));
 app.get('/baba', (req, res) => {
   res.sendFile(path.join(__dirname, '../../client/index.html'));
 });
-if (process.env.NODE_ENV !== 'test') {
+const { NODE_ENV } = process.env;
+if (NODE_ENV !== 'test' && NODE_ENV !== 'staging') {
   app.use(volleyball);
 }
 app.use(cors());
