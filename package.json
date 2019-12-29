@@ -10,6 +10,7 @@
     "start": "cross-env DEBUG=active node server/bundle/server.js",
     "start:dev": "npm run bundle && cross-env DEBUG=active NODE_ENV=development node server/bundle/server.js",
     "dev": "./node_modules/.bin/cross-env DEBUG=active NODE_ENV=development nodemon --exec \"../node_modules/.bin/babel-node server/src/server.js\" -w server",
+    "dev:stag": "./node_modules/.bin/cross-env DEBUG=active NODE_ENV=staging nodemon --exec \"../node_modules/.bin/babel-node server/src/server.js\" -w server",
     "bundle": "../node_modules/.bin/babel server/src -d server/bundle",
     "trans:client": "../node_modules/.bin/babel client/ -d public/js --verbose -w",
     "live-server": "live-server public",

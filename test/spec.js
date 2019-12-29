@@ -5,7 +5,8 @@ import syncAndSeed from '../server/src/seed/syncAndSeed';
 
 const request = supertest(app);
 describe('my app', () => {
-  before(async () => {
+  before(async function () {
+    this.timeout(25000);
     await syncAndSeed();
   });
   beforeEach(() => {
@@ -31,6 +32,15 @@ describe('my app', () => {
       .expect(201)
       .then((res) => expect(res.body.data).to.equal('BAR')));
   });
+  describe('Get head', () => {
+    it('set header', () => request
+      .get('/head')
+      .set('abu', 'lulu')
+      .expect(200)
+      .then((res) => {
+        expect(res.text).to.equal('lulu');
+      }));
+  });
   describe('Get api/v1', () => {
     it('get all categories', () => request
       .get('/api/v1/categories')
@@ -44,14 +54,11 @@ describe('my app', () => {
       .then((res) => {
         expect(res.body.length).to.equal(7);
       }));
-  });
-  describe('Get head', () => {
-    it('set header', () => request
-      .get('/head')
-      .set('abu', 'lulu')
+    it('get all products', () => request
+      .get('/api/v1/products')
       .expect(200)
       .then((res) => {
-        expect(res.text).to.equal('lulu');
+        expect(res.body.length).to.equal(7);
       }));
   });
 });

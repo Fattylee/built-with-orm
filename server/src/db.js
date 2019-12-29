@@ -1,9 +1,7 @@
 import Sequelize from 'sequelize';
-// import d from 'debug';
 import dotEnv from 'dotenv';
 import path from 'path';
 
-// const debug = d('active');
 const { NODE_ENV } = process.env;
 if (NODE_ENV === 'test') {
   dotEnv.config({ path: path.join(__dirname, '../../.env.test') });
