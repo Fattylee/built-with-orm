@@ -17,7 +17,9 @@ describe('my app', () => {
     // appIndex.close();
   });
   describe('Get /', async () => {
-    it('should pass', () => {});
+    it('should pass', () => {
+      throw Error('failure on purpose');
+    });
     it('returns foo bar', async () => {
       // expect(response.body.data).toBe('foo bar');
       // expect(response.body.data).to.equal('foo ar');
