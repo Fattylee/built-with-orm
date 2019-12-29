@@ -54,11 +54,5 @@ describe('my app', () => {
       .then((res) => {
         expect(res.body.length).to.equal(7);
       }));
-    it('get all products', () => request
-      .get('/api/v1/products')
-      .expect(200)
-      .then((res) => {
-        expect(res.body.length).to.equal(7);
-      }));
   });
 });
