@@ -5,11 +5,9 @@ import syncAndSeed from '../server/src/seed/syncAndSeed';
 
 const request = supertest(app);
 describe('my app', () => {
-  before(async function () {
+  before(async function beforeFunc() {
     this.timeout(25000);
     await syncAndSeed();
-    var ty;
-    console.log(556, ty);
   });
   beforeEach(() => {
     /* eslint-disable-next-line */
@@ -23,6 +21,7 @@ describe('my app', () => {
     it('returns foo bar', async () => {
       // expect(response.body.data).toBe('foo bar');
       // expect(response.body.data).to.equal('foo ar');
+      throw Error('failure on purpose');
     });
     it('should succeed on a . den', () => request
       .get('/foo')
