@@ -5,7 +5,7 @@ import syncAndSeed from '../server/src/seed/syncAndSeed';
 
 const request = supertest(app);
 describe('my app', () => {
-  before(async function beforeTest() {
+  before(async function () {
     this.timeout(25000);
     await syncAndSeed();
   });
