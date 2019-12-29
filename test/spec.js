@@ -23,7 +23,7 @@ describe('my app', () => {
     it('returns foo bar', async () => {
       // expect(response.body.data).toBe('foo bar');
       // expect(response.body.data).to.equal('foo ar');
-      throw Error('failure on purpose');
+      // throw Error('failure on purpose');
     });
     it('should succeed on a . den', () => request
       .get('/foo')
