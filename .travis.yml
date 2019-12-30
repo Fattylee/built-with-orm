@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - "stable"
 install:
-  npm ci
+  npm install
 cache:
   directories:
-    - "$HOME/.npm"
-script:
+    - "node_modules"
+scripts:
   - npm run staging
