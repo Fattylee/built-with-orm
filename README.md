@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Fattylee/built-with-orm.svg?branch=master)](https://travis-ci.org/Fattylee/built-with-orm)
+[![Build Status](https://travis-ci.com/Fattylee/built-with-orm.svg?branch=master)](https://travis-ci.org/Fattylee/built-with-orm)
 
 # built-with-orm
 
