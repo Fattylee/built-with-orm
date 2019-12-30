@@ -1,6 +1,6 @@
 import supertest from 'supertest';
-import { expect } from 'chai';
-import expectjs from 'expect';
+// import { expect } from 'chai';
+import expect from 'expect';
 import app from '../server/src/index';
 import syncAndSeed from '../server/src/seed/syncAndSeed';
 
@@ -29,12 +29,12 @@ describe('my app', () => {
     it('should succeed on a . den', () => request
       .get('/foo')
       .expect(200)
-      .then((res) => expect(res.body.data).to.equal('foo bar')));
+      .then((res) => expect(res.body.data).toBe('foo bar')));
     it('should bar from foo body', () => request
       .post('/foo')
       .send({ foo: 'bar' })
       .expect(201)
-      .then((res) => expect(res.body.data).to.equal('BAR')));
+      .then((res) => expect(res.body.data).toBe('BAR')));
   });
   describe('Get head', () => {
     it('set header', () => request
@@ -42,7 +42,7 @@ describe('my app', () => {
       .set('abu', 'lulu')
       .expect(200)
       .then((res) => {
-        expectjs(res.text).toBe('lulu');
+        expect(res.text).toBe('lulu');
       }));
   });
   describe('Get api/v1', () => {
@@ -50,13 +50,13 @@ describe('my app', () => {
       .get('/api/v1/categories')
       .expect(200)
       .then((res) => {
-        expect(res.body.length).to.equal(4);
+        expect(res.body.length).toBe(4);
       }));
     it('get all products', () => request
       .get('/api/v1/products')
       .expect(200)
       .then((res) => {
-        expect(res.body.length).to.equal(7);
+        expect(res.body.length).toBe(7);
       }));
   });
 });
