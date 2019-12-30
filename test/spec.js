@@ -1,15 +1,14 @@
 import supertest from 'supertest';
 import { expect } from 'chai';
+import expectjs from 'expect';
 import app from '../server/src/index';
 import syncAndSeed from '../server/src/seed/syncAndSeed';
 
 const request = supertest(app);
 describe('my app', () => {
-  before(async function () {
+  before(async function beforeFunc() {
     this.timeout(25000);
     await syncAndSeed();
-    var ty;
-    console.log(556, ty);
   });
   beforeEach(() => {
     /* eslint-disable-next-line */
@@ -19,10 +18,13 @@ describe('my app', () => {
     // appIndex.close();
   });
   describe('Get /', async () => {
-    it('should pass', () => {});
+    it('should pass', () => {
+      // throw Error('failure on purpose');
+    });
     it('returns foo bar', async () => {
       // expect(response.body.data).toBe('foo bar');
       // expect(response.body.data).to.equal('foo ar');
+      // throw Error('failure on purpose');
     });
     it('should succeed on a . den', () => request
       .get('/foo')
@@ -40,7 +42,7 @@ describe('my app', () => {
       .set('abu', 'lulu')
       .expect(200)
       .then((res) => {
-        expect(res.text).to.equal('lulu');
+        expectjs(res.text).toBe('lulu');
       }));
   });
   describe('Get api/v1', () => {
