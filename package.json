@@ -64,6 +64,12 @@
   ],
   "author": "Fatai Balogun",
   "license": "ISC",
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint . --fix",
+      "git add"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
