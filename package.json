@@ -17,7 +17,8 @@
     "client": "concurrently \"npm run trans:client\" \"npm run live-server\"",
     "full": "concurrently \"npm run dev\" \"npm run trans:client\" \"npm run live-server\" \"npm run browserify\"",
     "browserify": "nodemon --exec \"browserify public/js/index.js -o public/js/bundle.js \" -w public/js/index.js",
-    "postinstall": "./node_modules/.bin/babel server/src -d server/bundle"
+    "postinstall": "./node_modules/.bin/babel server/src -d server/bundle",
+    "precommit": "pretty-quick --staged"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",
@@ -49,9 +50,12 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
     "mocha": "^6.2.2",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
   },
   "keywords": [
     "js",
