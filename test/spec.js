@@ -39,7 +39,7 @@ describe('my app', () => {
       .get('/foo')
       .expect(200)
       .then((res) => expect(res.body.data).toBe('foo bar')));
-it('should bar from foo body', () => request
+    it('should bar from foo body', () => request
       .post('/foo')
       .send({ foo: 'bar' })
 
