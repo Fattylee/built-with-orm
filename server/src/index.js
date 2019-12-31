@@ -24,11 +24,9 @@ app.get('/bab', (req, res) => {
   }, 0);
 });
 app.get('/foo', (req, res) => res.send({ data: 'foo bar' }));
-app.post('/foo', (req, res) =>
-  res.status(201).send({
-    data: req.body.foo.toUpperCase()
-  })
-);
+app.post('/foo', (req, res) => res.status(201).send({
+  data: req.body.foo.toUpperCase(),
+}));
 app.get('/head', (req, res) => res.status(200).send(req.headers.abu));
 app.use('/api/v1', category);
 app.use('/api/v1', product);

@@ -65,7 +65,7 @@
   "author": "Fatai Balogun",
   "license": "ISC",
   "lint-staged": {
-    "test/**/*.{js,jsx}": [
+    "**/*.{js,jsx}": [
       "eslint . --fix",
       "git add"
     ]
