@@ -42,9 +42,10 @@ describe('my app', () => {
     it('should bar from foo body', () => request
       .post('/foo')
       .send({ foo: 'bar' })
-
       .expect(201)
       .then((res) => expect(res.body.data).toBe('BAR')));
+    let ggghh;
+    console.log(ggghh, 56);
   });
   describe('Get head', () => {
     it('set header', () => request
