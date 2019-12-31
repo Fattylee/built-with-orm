@@ -17,8 +17,7 @@
     "client": "concurrently \"npm run trans:client\" \"npm run live-server\"",
     "full": "concurrently \"npm run dev\" \"npm run trans:client\" \"npm run live-server\" \"npm run browserify\"",
     "browserify": "nodemon --exec \"browserify public/js/index.js -o public/js/bundle.js \" -w public/js/index.js",
-    "postinstall": "./node_modules/.bin/babel server/src -d server/bundle",
-    "precommit": "pretty-quick --staged"
+    "postinstall": "./node_modules/.bin/babel server/src -d server/bundle"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",
@@ -64,5 +63,10 @@
     "houndci"
   ],
   "author": "Fatai Balogun",
-  "license": "ISC"
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }
