@@ -44,6 +44,7 @@ describe('my app', () => {
       request
         .post('/foo')
         .send({ foo: 'bar' })
+
         .expect(201)
         .then(res => expect(res.body.data).toBe('BAR')));
   });
