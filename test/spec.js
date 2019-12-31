@@ -44,7 +44,7 @@ describe('my app', () => {
       .send({ foo: 'bar' })
       .expect(201)
       .then((res) => expect(res.body.data).toBe('BAR')));
-    let ggghh;
+    const ggghh = 677;
     console.log(ggghh, 56);
   });
   describe('Get head', () => {
