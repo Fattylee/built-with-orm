@@ -66,7 +66,7 @@
   "license": "ISC",
   "lint-staged": {
     "**/*.{js,jsx,css,md,html}": [
-      "eslint . --fix",
+      "prettier --write",
       "git add"
     ]
   },
