@@ -35,40 +35,45 @@ describe('my app', () => {
       // expect(response.body.data).to.equal('foo ar');
       // throw Error('failure on purpose');
     });
-    it('should succeed on a . den', () => request
-      .get('/foo')
-      .expect(200)
-      .then((res) => expect(res.body.data).toBe('foo bar')));
-    it('should bar from foo body', () => request
-      .post('/foo')
-      .send({ foo: 'bar' })
-      .expect(201)
-      .then((res) => expect(res.body.data).toBe('BAR')));
+    it('should succeed on a . den', () =>
+      request
+        .get('/foo')
+        .expect(200)
+        .then(res => expect(res.body.data).toBe('foo bar')));
+    it('should bar from foo body', () =>
+      request
+        .post('/foo')
+        .send({ foo: 'bar' })
+        .expect(201)
+        .then(res => expect(res.body.data).toBe('BAR')));
     const ggghh = 677;
     console.log(ggghh, 56);
   });
   describe('Get head', () => {
-    it('set header', () => request
-      .get('/head')
-      .set('abu', 'lulu')
-      .expect(200)
-      .then((res) => {
-        expect(res.text).toBe('lulu');
-      }));
+    it('set header', () =>
+      request
+        .get('/head')
+        .set('abu', 'lulu')
+        .expect(200)
+        .then(res => {
+          expect(res.text).toBe('lulu');
+        }));
   });
   describe('Get api/v1', () => {
-    it('get all categories', () => request
-      .get('/api/v1/categories')
-      .expect(200)
-      .then((res) => {
-        expect(res.body.some((c) => c.name === 'category a')).toBeTruthy();
-        expect(res.body.some((c) => c.name === 'category f')).toBeFalsy();
-      }));
-    it('get all products', () => request
-      .get('/api/v1/products')
-      .expect(200)
-      .then((res) => {
-        expect(res.body.length).toBe(7);
-      }));
+    it('get all categories', () =>
+      request
+        .get('/api/v1/categories')
+        .expect(200)
+        .then(res => {
+          expect(res.body.some(c => c.name === 'category a')).toBeTruthy();
+          expect(res.body.some(c => c.name === 'category f')).toBeFalsy();
+        }));
+    it('get all products', () =>
+      request
+        .get('/api/v1/products')
+        .expect(200)
+        .then(res => {
+          expect(res.body.length).toBe(7);
+        }));
   });
 });
