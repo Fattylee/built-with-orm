@@ -65,8 +65,8 @@
   "author": "Fatai Balogun",
   "license": "ISC",
   "lint-staged": {
-    "**/*.{js,jsx}": [
-      "prettier --write",
+    "**/*.{js,jsx,css,md,html}": [
+      "eslint . --fix",
       "git add"
     ]
   },
