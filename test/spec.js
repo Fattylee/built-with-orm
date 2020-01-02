@@ -101,6 +101,7 @@ describe('my app', () => {
       return num;
     };
     const max = 456;
+
     it('should return a fizzbuzz', () => {
       const result = getFizzbuzz(30);
       console.log(expect(result).toMatch('izzbuzz'));
