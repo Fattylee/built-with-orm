@@ -18,7 +18,7 @@
     "full": "concurrently \"npm run dev\" \"npm run trans:client\" \"npm run live-server\" \"npm run browserify\"",
     "browserify": "nodemon --exec \"browserify public/js/index.js -o public/js/bundle.js \" -w public/js/index.js",
     "postinstall": "./node_modules/.bin/babel server/src -d server/bundle",
-    "lint": "eslint '**/*'",
+    "lint": "eslint '**/*.{js,jsx}' --fix",
     "lint:fix": "prettier-eslint '**/*.*' --write"
   },
   "dependencies": {
@@ -70,6 +70,7 @@
   "license": "ISC",
   "lint-staged": {
     "**/*.{js,jsx,css,md,html}": [
+      "npm run lint",
       "npm run lint:fix",
       "git add"
     ]
