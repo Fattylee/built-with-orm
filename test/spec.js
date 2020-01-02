@@ -107,3 +107,4 @@ describe('my app', () => {
   });
 });
 ffgb;
+console.log(ttt);
