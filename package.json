@@ -17,7 +17,9 @@
     "client": "concurrently \"npm run trans:client\" \"npm run live-server\"",
     "full": "concurrently \"npm run dev\" \"npm run trans:client\" \"npm run live-server\" \"npm run browserify\"",
     "browserify": "nodemon --exec \"browserify public/js/index.js -o public/js/bundle.js \" -w public/js/index.js",
-    "postinstall": "./node_modules/.bin/babel server/src -d server/bundle"
+    "postinstall": "./node_modules/.bin/babel server/src -d server/bundle",
+    "lint": "eslint '**/*'",
+    "lint:fix": "prettier-eslint '**/*.*' --write"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",
@@ -41,7 +43,7 @@
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/register": "^7.7.7",
-    "eslint": "^6.8.0",
+    "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.8.0",
     "eslint-plugin-import": "^2.19.1",
@@ -54,6 +56,8 @@
     "lint-staged": "^9.5.0",
     "mocha": "^6.2.2",
     "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1",
+    "prettier-eslint-cli": "^5.0.0",
     "pretty-quick": "^2.0.1"
   },
   "keywords": [
@@ -66,7 +70,7 @@
   "license": "ISC",
   "lint-staged": {
     "**/*.{js,jsx,css,md,html}": [
-      "prettier --write",
+      "npm run lint:fix",
       "git add"
     ]
   },

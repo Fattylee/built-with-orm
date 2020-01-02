@@ -35,44 +35,39 @@ describe('my app', () => {
       // expect(response.body.data).to.equal('foo ar');
       // throw Error('failure on purpose');
     });
-    it('should succeed on a . den', () =>
-      request
+    it('should succeed on a . den', () => request
       .get('/foo')
       .expect(200)
-      .then(res => expect(res.body.data).toBe('foo bar')));
-    it('should bar from foo body', () =>
-      request
+      .then((res) => expect(res.body.data).toBe('foo bar')));
+    it('should bar from foo body', () => request
       .post('/foo')
       .send({ foo: 'bar' })
       .expect(201)
-      .then(res => expect(res.body.data).toBe('BAR')));
+      .then((res) => expect(res.body.data).toBe('BAR')));
     const ggghh = 677;
     console.log(ggghh, 56);
   });
   describe('Get head', () => {
-    it('set header', () =>
-      request
+    it('set header', () => request
       .get('/head')
       .set('abu', 'lulu')
       .expect(200)
-      .then(res => {
+      .then((res) => {
         expect(res.text).toBe('lulu');
       }));
   });
   describe('Get api/v1', () => {
-    it('get all categories', () =>
-      request
+    it('get all categories', () => request
       .get('/api/v1/categories')
       .expect(200)
-      .then(res => {
-        expect(res.body.some(c => c.name === 'category a')).toBeTruthy();
-        expect(res.body.some(c => c.name === 'category f')).toBeFalsy();
+      .then((res) => {
+        expect(res.body.some((c) => c.name === 'category a')).toBeTruthy();
+        expect(res.body.some((c) => c.name === 'category f')).toBeFalsy();
       }));
-    it('get all products', () =>
-      request
+    it('get all products', () => request
       .get('/api/v1/products')
       .expect(200)
-      .then(res => {
+      .then((res) => {
         expect(res.body.length).toBe(7);
       }));
   });
@@ -93,15 +88,17 @@ describe('my app', () => {
     expect(o).toHaveProperty('id', 1);
     expect(o).toMatchObject({ name: 'gth' });
     expect(o).toStrictEqual({ id: 1, name: 'gth' });
-    args.forEach((a) =>
-      expect(() => {
+    args.forEach((a) => expect(() => {
       throwEx(a);
-    }).toThrow(/dA/i)
-    );
+    }).toThrow(/dA/i));
   });
   describe('FIZZBUZZ', () => {
     const getFizzbuzz = (num) => {
+      if (typeof num !== 'number') throw new Error('invalid input value');
       if (num % 3 === 0 && num % 5 === 0) return 'fizzbuzz';
+      if (num % 3 === 0) return 'fizz';
+      if (num % 5 === 0) return 'buzz';
+      return num;
     };
     it('should return a fizzbuzz', () => {
       const result = getFizzbuzz(30);
