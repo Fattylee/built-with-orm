@@ -6,6 +6,11 @@
  * tweak ur text-editor for nice formatting
  *  */
 let bob = 56;
-console.log('456', '32', 'thhj');
+console.log(
+  '456',
+  '32',
+
+  'thhj',
+);
 bob = '56';
 console.log(bob);

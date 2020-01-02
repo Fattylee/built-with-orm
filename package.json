@@ -53,7 +53,7 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0",
-    "lint-staged": "^9.5.0",
+    "lint-staged": "^10.0.0-beta.14",
     "mocha": "^6.2.2",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
@@ -70,8 +70,8 @@
   "license": "ISC",
   "lint-staged": {
     "**/*.{js,jsx,css,md,html}": [
-      "npm run lint:fix",
-      "git add"
+      "npm run lint",
+      "npm run lint:fix"
     ]
   },
   "husky": {
