@@ -5,6 +5,7 @@ import cors from 'cors';
 import product from './routes/product';
 import category from './routes/category';
 
+console.log(55);
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../public')));
@@ -16,6 +17,12 @@ if (NODE_ENV !== 'test' && NODE_ENV !== 'staging') {
   app.use(volleyball);
 }
 app.use(cors());
+app.get('/bab', (req, res) => {
+  setTimeout(() => {
+    console.log('send response after 0s timeout');
+    res.send({ data: 'hurray' });
+  }, 0);
+});
 app.get('/foo', (req, res) => res.send({ data: 'foo bar' }));
 app.post('/foo', (req, res) => res.status(201).send({
   data: req.body.foo.toUpperCase(),
