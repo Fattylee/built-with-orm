@@ -100,6 +100,7 @@ describe('my app', () => {
       if (num % 5 === 0) return 'buzz';
       return num;
     };
+    const max = 45;
     it('should return a fizzbuzz', () => {
       const result = getFizzbuzz(30);
       console.log(expect(result).toMatch('izzbuzz'));

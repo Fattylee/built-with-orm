@@ -5,7 +5,7 @@
  * install prettier-eslint for a nice formatting
  * tweak ur text-editor for nice formatting
  *  */
-
+var bob = 56;
 console.log('456', '32', 'thhj');
 const bob = '56';
 console.log(bob);
