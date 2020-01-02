@@ -106,4 +106,3 @@ describe('my app', () => {
     });
   });
 });
-console.log(56);
