@@ -14,3 +14,13 @@ console.log(
 );
 bob = '56';
 console.log(bob);
+let woo = () => {
+  console.log('show some');
+};
+woo();
+
+woo = () => {
+  console.log('woo1 sho some');
+};
+woo();
+// woo1()
