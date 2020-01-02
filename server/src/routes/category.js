@@ -4,7 +4,7 @@ import Product from '../models/Product';
 
 const router = express.Router();
 // eslint-disable-next-line
-router.get("/categories", async (req, res) => {
+router.get('/categories', async (req, res) => {
   res.send(await Category.findAll({ include: [Product] }));
 });
 
