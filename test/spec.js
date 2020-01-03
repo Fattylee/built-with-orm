@@ -44,8 +44,6 @@ describe('my app', () => {
       .send({ foo: 'bar' })
       .expect(201)
       .then((res) => expect(res.body.data).toBe('BAR')));
-    const ggghh = 677;
-    console.log(ggghh, 56);
   });
   describe('Get head', () => {
     it('set header', () => request
@@ -100,11 +98,21 @@ describe('my app', () => {
       if (num % 5 === 0) return 'buzz';
       return num;
     };
-    const max = 456;
-    console.log(max);
     it('should return a fizzbuzz', () => {
       const result = getFizzbuzz(30);
-      console.log(expect(result).toMatch('izzbuzz'));
+      expect(result).toMatch('izzbuzz');
+    });
+    it('should return fizz', () => {
+      const result = getFizzbuzz(3);
+      expect(result).toMatch('izz');
+    });
+    it('should return buzz', () => {
+      const result = getFizzbuzz(5);
+      expect(result).toBe('buzz');
+    });
+    it('should return input number', () => {
+      const result = getFizzbuzz(34);
+      expect(result).toBe(34);
     });
   });
 });

@@ -6,21 +6,12 @@
  * tweak ur text-editor for nice formatting
  *  */
 let bob = 56;
-console.log(
-  '456',
-  '32',
-
-  'thhj',
-);
 bob = '56';
-console.log(bob);
 let woo = () => {
-  console.log('show some');
+  // console.log('show some');
 };
 woo();
 
-woo = () => {
-  console.log('woo1 sho some');
-};
+woo = () => bob;
 woo();
 // woo1()

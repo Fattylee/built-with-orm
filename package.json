@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha -w -r @babel/register",
+    "test": "NODE_ENV=test mocha test/ -w -r @babel/register",
+    "test:hooks": "NODE_ENV=test mocha test/ -r @babel/register",
     "staging": "NODE_ENV=staging mocha -r @babel/register",
     "test:jest": "./node_modules/.bin/cross-env NODE_ENV=test jest --verbose --watchAll",
     "start": "cross-env DEBUG=active node server/bundle/server.js",
@@ -69,9 +70,10 @@
   "author": "Fatai Balogun",
   "license": "ISC",
   "lint-staged": {
-    "**/*.{js,jsx,css,md,html}": [
+    "**/*.{js,jsx,css,html}": [
       "npm run lint",
-      "npm run lint:fix"
+      "npm run lint:fix",
+      "npm run test:hooks"
     ]
   },
   "husky": {
