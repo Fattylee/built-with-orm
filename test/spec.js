@@ -112,7 +112,7 @@ describe('my app', () => {
     });
     it('should return input number', () => {
       const result = getFizzbuzz(34);
-      expect(result).toBe(34);
+      expect(result).toBe(4);
     });
   });
 });
