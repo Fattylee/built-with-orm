@@ -36,7 +36,7 @@ Product.prototype.findSimilar = function findSimilar() {
   return Product.findAll({
     where: { categoryId: this.categoryId },
     // eslint-disable-next-line
-  }).then((res) => res.filter((p) => p.id !== this.id));
+  }).then(res => res.filter(p => p.id !== this.id))
 };
 
 export default Product;
