@@ -5,8 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test mocha -w -r @babel/register",
-    "staging": "NODE_ENV=staging mocha -r @babel/register",
+    "test:hooks": "NODE_ENV=test nyc mocha -r @babel/register --ignore '*.md'",
+    "staging": "NODE_ENV=staging mocha -r @babel/register ",
     "test:jest": "./node_modules/.bin/cross-env NODE_ENV=test jest --verbose --watchAll",
+    "prestart": "echo prestart here",
+    "poststart": "echo posttart here",
     "start": "cross-env DEBUG=active node server/bundle/server.js",
     "start:dev": "npm run bundle && cross-env DEBUG=active NODE_ENV=development node server/bundle/server.js",
     "dev": "./node_modules/.bin/cross-env DEBUG=active NODE_ENV=development nodemon --exec \"../node_modules/.bin/babel-node server/src/server.js\" -w server",
@@ -19,7 +22,7 @@
     "browserify": "nodemon --exec \"browserify public/js/index.js -o public/js/bundle.js \" -w public/js/index.js",
     "postinstall": "./node_modules/.bin/babel server/src -d server/bundle",
     "lint": "eslint . --fix",
-    "lint:fix": "prettier-eslint '**/*.*' --write"
+    "postlint": "prettier-eslint '**/*.*' --write"
   },
   "dependencies": {
     "@babel/core": "^7.7.7",
@@ -55,6 +58,7 @@
     "jest": "^24.9.0",
     "lint-staged": "^10.0.0-beta.14",
     "mocha": "^6.2.2",
+    "nyc": "^15.0.0",
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.1",
     "prettier-eslint-cli": "^5.0.0",
@@ -70,13 +74,13 @@
   "license": "ISC",
   "lint-staged": {
     "**/*.{js,jsx,css,md,html}": [
-      "npm run lint",
-      "npm run lint:fix"
+      "npm run lint"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test:hooks"
     }
   }
 }

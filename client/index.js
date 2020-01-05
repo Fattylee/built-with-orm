@@ -10,12 +10,12 @@ class App extends React.Component {
   componentDidMount() {
     const url = 'http://localhost:4000/api/v1/products';
     fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         this.setState({ products: data });
         console.log(data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log('Error:', err.message);
       });
   }
@@ -25,7 +25,7 @@ class App extends React.Component {
     const list = (
       <ul>
         {/* eslint-disable-next-line */}
-        {products.map((p) => (
+        {products.map(p => (
           <li key={p.id}>{p.name}</li>
         ))}
       </ul>

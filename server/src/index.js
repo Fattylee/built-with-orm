@@ -5,7 +5,6 @@ import cors from 'cors';
 import product from './routes/product';
 import category from './routes/category';
 
-console.log(55);
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../public')));

@@ -25,8 +25,8 @@ const syncAndSeed = async () => {
     ];
     /* eslint-disable */
     const [fatai, haleemath, abdullah] = await Promise.all(
-      users.map((user) => User.create(user)),
-    );
+      users.map(user => User.create(user))
+    )
     /* eslint-enable */
     debug(fatai.get());
     /* eslint-disable-next-line */

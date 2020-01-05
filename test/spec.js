@@ -38,21 +38,19 @@ describe('my app', () => {
     it('should succeed on a . den', () => request
       .get('/foo')
       .expect(200)
-      .then((res) => expect(res.body.data).toBe('foo bar')));
+      .then(res => expect(res.body.data).toBe('foo bar')));
     it('should bar from foo body', () => request
       .post('/foo')
       .send({ foo: 'bar' })
       .expect(201)
-      .then((res) => expect(res.body.data).toBe('BAR')));
-    const ggghh = 677;
-    console.log(ggghh, 56);
+      .then(res => expect(res.body.data).toBe('BAR')));
   });
   describe('Get head', () => {
     it('set header', () => request
       .get('/head')
       .set('abu', 'lulu')
       .expect(200)
-      .then((res) => {
+      .then(res => {
         expect(res.text).toBe('lulu');
       }));
   });
@@ -60,23 +58,24 @@ describe('my app', () => {
     it('get all categories', () => request
       .get('/api/v1/categories')
       .expect(200)
-      .then((res) => {
-        expect(res.body.some((c) => c.name === 'category a')).toBeTruthy();
-        expect(res.body.some((c) => c.name === 'category f')).toBeFalsy();
+      .then(res => {
+        expect(res.body.some(c => c.name === 'category a')).toBeTruthy();
+        expect(res.body.some(c => c.name === 'category f')).toBeFalsy();
       }));
     it('get all products', () => request
       .get('/api/v1/products')
       .expect(200)
-      .then((res) => {
+      .then(res => {
         expect(res.body.length).toBe(7);
       }));
+    it('should return exceptions', () => request.get('/api/v1/products'));
   });
   it('freestyle', () => {
     const obj = 'abu is assiduos';
     const arr = [2, 'ff', true];
     const o = { id: 1, name: 'gth' };
     const args = [null, undefined, '', 0, NaN, false];
-    const throwEx = (input) => {
+    const throwEx = input => {
       if (!input) throw new Error('dabaru');
     };
     expect(obj).toMatch('abu');
@@ -88,23 +87,33 @@ describe('my app', () => {
     expect(o).toHaveProperty('id', 1);
     expect(o).toMatchObject({ name: 'gth' });
     expect(o).toStrictEqual({ id: 1, name: 'gth' });
-    args.forEach((a) => expect(() => {
+    args.forEach(a => expect(() => {
       throwEx(a);
     }).toThrow(/dA/i));
   });
   describe('FIZZBUZZ', () => {
-    const getFizzbuzz = (num) => {
+    const getFizzbuzz = num => {
       if (typeof num !== 'number') throw new Error('invalid input value');
       if (num % 3 === 0 && num % 5 === 0) return 'fizzbuzz';
       if (num % 3 === 0) return 'fizz';
       if (num % 5 === 0) return 'buzz';
       return num;
     };
-    const max = 456;
-    console.log(max);
     it('should return a fizzbuzz', () => {
       const result = getFizzbuzz(30);
-      console.log(expect(result).toMatch('izzbuzz'));
+      expect(result).toMatch('izzbuzz');
+    });
+    it('should return fizz', () => {
+      const result = getFizzbuzz(3);
+      expect(result).toMatch('izz');
+    });
+    it('should return buzz', () => {
+      const result = getFizzbuzz(5);
+      expect(result).toBe('buzz');
+    });
+    it('should return input number', () => {
+      const result = getFizzbuzz(34);
+      expect(result).toBe(34);
     });
   });
 });
