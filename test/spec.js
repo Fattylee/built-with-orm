@@ -1,13 +1,16 @@
 import supertest from 'supertest';
+
 // import { expect } from 'chai';
 import expect from 'expect';
 import app from '../server/src/index';
 import syncAndSeed from '../server/src/seed/syncAndSeed';
 
+// const { sum } = require('./utils');
+
 const request = supertest(app);
 describe('my app', () => {
-  before(async function beforeFunc() {
-    this.timeout(25000);
+  beforeAll(async () => {
+    // this.timeout(25000);
     await syncAndSeed();
   });
   beforeEach(() => {
@@ -17,17 +20,23 @@ describe('my app', () => {
   afterEach(() => {
     // appIndex.close();
   });
-  describe('Get /', async () => {
+  describe('Get /', () => {
     it('should return nice obj', () => {
       const obj = { name: 'abu', age: 32 };
       expect(obj).toStrictEqual({ name: 'abu', age: 32 });
       expect(obj).toMatchObject({ name: 'abu', age: 32 });
       expect(obj).toEqual({ name: 'abu', age: 32 });
     });
-    it('send bab', async function named() {
+    it('test GET /baba', async () => {
+      const res = await request.get('/baba');
+      expect(res.header['content-type']).toContain('html');
+    });
+    it('send bab', async () => {
       // this.timeout(16000);
-      this.timeout(9000);
+      // this.timeout(9000);
+      jest.setTimeout(8000);
       const res = await request.get('/bab');
+      expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('data', 'hurray');
     });
     it('returns foo bar', async () => {
@@ -114,6 +123,37 @@ describe('my app', () => {
     it('should return input number', () => {
       const result = getFizzbuzz(34);
       expect(result).toBe(34);
+      expect([2, 3, 5, 6]).toContain(3);
+      expect([5, 6, 2, 3]).toEqual(expect.arrayContaining([3, 5, 6, 2]));
+      // sum(2, 4, res => {
+      // expect(res).toBe(6);
+      // done();
+      // });
+    });
+  });
+  describe('TDD', () => {
+    it('should get all users', done => {
+      request
+        .get('/users')
+        .expect(200)
+        .expect(res => {
+          expect(res.body).toEqual(
+            expect.arrayContaining([{ name: 'abu' }, { name: 'umu', age: 21 }]),
+          );
+          expect(res.status).toBe(200);
+        })
+        .end(done);
+    });
+    it('test spy', () => {
+      const spy = jest.fn().mockReturnValue();
+      spy();
+      expect(spy).toHaveBeenCalled();
+    });
+    it('hello world delay by 6s', async () => {
+      const getMe = Promise.resolve(33);
+      // setTimeout(() => {});
+      const res = await getMe;
+      expect(res).toBe(33);
     });
   });
 });
