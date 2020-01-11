@@ -1,8 +1,4 @@
 import sumAsync, { forEach } from './util';
-
-console
-
-  .log(555);
 /*
  *
  * create .editorconfig and define all styles
