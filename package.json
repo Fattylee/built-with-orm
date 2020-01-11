@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test mocha -w -r @babel/register",
-    "test:coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:coveralls": "NODE_ENV=staging jest --coverage --coverageReporters=text-lcov | coveralls",
     "test:nodemon": "NODE_ENV=test nodemon --exec \"mocha  -r @babel/register\"",
     "test:hooks": "NODE_ENV=test nyc mocha -r @babel/register --ignore '*.md'",
     "staging": "NODE_ENV=staging mocha -r @babel/register ",
     "test:stag": "jest --verbose --coverage",
-    "test:jest": "./node_modules/.bin/cross-env NODE_ENV=test jest --verbose --watchAll",
+    "test:jest": "cross-env NODE_ENV=test jest --verbose --watchAll",
     "start": "cross-env DEBUG=active node server/bundle/server.js",
     "start:dev": "npm run bundle && cross-env DEBUG=active NODE_ENV=development node server/bundle/server.js",
     "dev": "./node_modules/.bin/cross-env DEBUG=active NODE_ENV=development nodemon --exec \"../node_modules/.bin/babel-node server/src/server.js\" -w server",
@@ -82,7 +82,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run test:hooks"
+      "pre-push": "npm run test:stag"
     }
   }
 }
