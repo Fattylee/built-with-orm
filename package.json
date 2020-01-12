@@ -10,6 +10,7 @@
     "test:hooks": "NODE_ENV=test nyc mocha -r @babel/register --ignore '*.md'",
     "staging": "NODE_ENV=staging mocha -r @babel/register ",
     "test:stag": "jest --verbose --coverage",
+    "test:circleci": "cross-env NODE_ENV=staging jest --verbose --coverage",
     "test:jest": "cross-env NODE_ENV=test jest --verbose --watchAll",
     "start": "cross-env DEBUG=active node server/bundle/server.js",
     "start:dev": "npm run bundle && cross-env DEBUG=active NODE_ENV=development node server/bundle/server.js",
