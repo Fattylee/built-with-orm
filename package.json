@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test mocha -w -r @babel/register",
-    "test:coveralls": "NODE_ENV=staging jest --coverage --coverageReporters=text-lcov | coveralls",
+    "test:coveralls": "NODE_ENV=staging jest --coverage --forceExit --coverageReporters=text-lcov | coveralls ",
     "test:nodemon": "NODE_ENV=test nodemon --exec \"mocha  -r @babel/register\"",
     "test:hooks": "NODE_ENV=test nyc mocha -r @babel/register --ignore '*.md'",
     "staging": "NODE_ENV=staging mocha -r @babel/register ",
