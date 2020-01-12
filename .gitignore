@@ -5,3 +5,5 @@ server/bundle
 .env.test
 .env.staging
 .nyc_output/
+coverage
+*.zip

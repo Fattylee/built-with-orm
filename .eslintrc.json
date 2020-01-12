@@ -29,6 +29,7 @@
         "vars": "local",
         "args": "none"
       }
-    ]
+    ],
+    "eol-last": 2
   }
 }
