@@ -1,5 +1,4 @@
 import supertest from 'supertest';
-
 // import { expect } from 'chai';
 import expect from 'expect';
 import app from '../server/src/index';
@@ -137,9 +136,8 @@ describe('my app', () => {
         .get('/users')
         .expect(200)
         .expect(res => {
-          expect(res.body).toEqual(
-            expect.arrayContaining([{ name: 'abu' }, { name: 'umu', age: 21 }]),
-          );
+          const data = [{ name: 'abu' }, { name: 'umu', age: 21 }];
+          expect(res.body).toEqual(expect.arrayContaining(data));
           expect(res.status).toBe(200);
         })
         .end(done);
