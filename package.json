@@ -49,6 +49,7 @@
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/register": "^7.7.7",
+    "axios": "^0.19.1",
     "coveralls": "^3.0.9",
     "eslint": "^6.4.0",
     "eslint-config-airbnb": "^18.0.1",
