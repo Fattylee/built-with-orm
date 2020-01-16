@@ -28,9 +28,9 @@ export const myCallBack = res => {
 
 const sum = (a, b, c, d) => {
   if (typeof d === 'function') {
-    d();
-    d(2, 4, 5);
-    d(a + b + c, a * b * c, (a * b) / c);
+    // d();
+    // d(2, 4, 5);
+    // d(a + b + c, a * b * c, (a * b) / c);
     return;
   }
   if (typeof c !== 'undefined') {
@@ -45,6 +45,53 @@ const sum = (a, b, c, d) => {
 const callbackhere = (s, p, d) => {
   console.log(s, p, d);
 };
-const res = sum(1, 2, 3, callbackhere);
+const result = sum(1, 2, 3, callbackhere);
 // console.log(typeof sum());
-console.log(res);
+console.log(result);
+const is = !false;
+const promiseMe = () => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (is) {
+      resolve('wawuu!!');
+    }
+    reject(Error('got rejected!'));
+  }, 4000);
+});
+// console.log(promiseMe().catch(console.log));
+// console.log(
+// promiseMe()
+// .then(res => {
+// console.log('do some work');
+// console.log(res);
+// // return 566666;
+// tty;
+// })
+// .then(res => console.log('last then', res))
+// .then(res => console.log('last then plus', res))
+// .catch(console.log),
+// );
+
+const asyncMethod = async () => {
+  promiseMe();
+  setTimeout(() => {
+    console.log('wow im asyncMethod');
+    return 65;
+  }, 4000);
+  console.log('finished asyncMethod');
+};
+// const getRes = () => asyncMethod().then(res => {
+// console.log('handled promiseMe', res);
+// });
+const getRes = async () => {
+  console.log('inside getRes...');
+  const res = await asyncMethod();
+  console.log('handled promiseMe', res);
+};
+console.log('b4 calling getRes');
+console.log(
+  getRes(),
+  // .then(res => {
+  // console.log('giveMe more result', res);
+  // }),
+);
+console.log('last line here');

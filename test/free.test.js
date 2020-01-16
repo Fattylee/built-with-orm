@@ -35,9 +35,13 @@ describe('free.test.js suit', () => {
   });
   it('should reject async func', async () => {
     // const plusOne = 1;
-    expect(() => {
-      sumAsync(2, 3);
-    }).toThrow();
+    // expect(() => {
+    // sumAsync(null, 3
+    // }).toThrow();
+    // expect(sumAsync(null, 5)).rejects.toContain('invalid');
+    expect(sumAsync(null, 5)).rejects.toEqual(
+      Error('invalid input type, pls enter a number'),
+    );
   });
   it('should resolve async func', async () => {
     // const sumAsync = jest.fn().mockResolvedValue(7);

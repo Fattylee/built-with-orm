@@ -4,10 +4,9 @@ export const sum = (a, b, callback) => {
   }, 100);
 };
 
-const plusOne = 0;
 const sumAsync = (a, b) => new Promise((res, rej) => {
-  if (plusOne === 1) {
-    rej(Error("couldn't get the result"));
+  if (typeof a !== 'number') {
+    rej(Error('invalid input type, pls enter a number'));
   }
   setTimeout(() => {
     res(a + b);
