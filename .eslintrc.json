@@ -30,6 +30,7 @@
         "args": "none"
       }
     ],
-    "eol-last": 2
+    "eol-last": 2,
+    "consistent-return": "off"
   }
 }
