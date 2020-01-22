@@ -154,4 +154,23 @@ describe('my app', () => {
       expect(res).toBe(33);
     });
   });
+  it('hello world', () => {
+    const callBackFn = cb => cb(7);
+    const mockFunc = jest.fn();
+    callBackFn(mockFunc);
+    expect(mockFunc).toBeCalledWith(expect.any(Number));
+    expect(34).toEqual(expect.any(Number));
+    expect({ a: 4, b: 'hello' }).toEqual(
+      expect.objectContaining({ a: expect.any(Number) }),
+    );
+    expect({ b: 3, c: 21, a: 21 }).toEqual({
+      b: 3,
+      c: expect.anything(),
+      a: 21,
+    });
+    expect({ b: 3, c: 21, a: 21 }).toMatchObject({
+      b: 3,
+      c: expect.anything(),
+    });
+  });
 });

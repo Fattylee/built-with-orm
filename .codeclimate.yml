@@ -1,0 +1,12 @@
+engines:
+  duplication:
+    enabled: false
+    config:
+      languages:
+        - javascript
+ratings:
+  paths:
+    - 'server/src/**/*.js'
+exclude_paths:
+  - 'server/test/**/*'
+  - 'server/src/db.js'

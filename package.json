@@ -78,10 +78,8 @@
   "author": "Fatai Balogun",
   "license": "ISC",
   "lint-staged": {
-    "**/*.{js,jsx,css,md,html}": [
-      "yarn lint",
-      "yarn postlint"
-    ]
+    "**/*.{js,jsx}": "yarn lint",
+    "**/*.{js,jsx,css,html,json,md,yml,yaml}": "yarn postlint"
   },
   "husky": {
     "hooks": {
