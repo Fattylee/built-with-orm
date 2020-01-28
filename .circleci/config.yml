@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  test_build:
     docker:
       - image: circleci/node:13-browsers
     steps:
@@ -24,3 +24,9 @@ jobs:
             ls -al
             node -v
             git --version
+
+workflow:
+  version: 2
+  my_custom_workflow:
+    jobs:
+      - test_build
