@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: alpine:3.7
+      - image: circleci/node:13-browsers
     steps:
       - run:
           name: The First Step
@@ -12,10 +13,13 @@ jobs:
             ls -al
       - checkout
       - run:
+          name: Freestyling here only
+          command: echo free me jhorr
+      - run:
           name: The Second step fattylee
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
             ls -al
+            node -v
             git --version
-            # node -v
