@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  test_build:
+  simple_build:
     docker:
       - image: circleci/node:13-browsers
     steps:
@@ -24,9 +24,21 @@ jobs:
             ls -al
             node -v
             git --version
+  fix_build:
+    docker:
+      - image: alpine:3.7
+    steps:
+      - checkout
+      - run:
+          name: nothing serious
+          command: |
+            echo 'Gappy cofinf'
+            echo 'This is the delivery pipeline'
+            ls -al
 
 workflows:
   version: 2
-  my_custom_workflow:
+  my_custom_workflow_next:
     jobs:
-      - test_build
+      - simple_build
+      - fix_build
