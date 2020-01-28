@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -23,9 +23,9 @@ jobs:
 
     steps:
       - checkout
+      - run: whoami
       - run: apt-get update
       - run: apt-get install postgresql-client-9.6
-      - run: whoami
       - run: |
           psql \
           -c "\conninfo"
