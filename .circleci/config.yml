@@ -25,7 +25,7 @@ jobs:
             node -v
             git --version
 
-workflow:
+workflows:
   version: 2
   my_custom_workflow:
     jobs:
