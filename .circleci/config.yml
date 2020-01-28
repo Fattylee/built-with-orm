@@ -23,8 +23,8 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt-get update
-      - run: sudo apt-get install postgresql-client-9.6
+      - run: apt-get update
+      - run: apt-get install postgresql-client-9.6
       - run: whoami
       - run: |
           psql \
