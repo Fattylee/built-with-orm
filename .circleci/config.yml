@@ -1,44 +1,59 @@
+
 version: 2.1
 jobs:
-  simple_build:
+  Hello-World:
     docker:
-      - image: circleci/node:13-browsers
+      - image: alpine:3.7
     steps:
       - run:
-          name: The First Step
+          name: Hello World
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
-            ls -al
-      - checkout
-      - run:
-          name: Freestyling here only
-          command: |
-            echo free me jhorr
-            echo $CIRCLE_USERNAME 
-      - run:
-          name: The Second step fattylee
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipeline'
-            ls -al
-            node -v
-            git --version
-  fix_build:
+  I-Have-Code:
     docker:
       - image: alpine:3.7
     steps:
       - checkout
       - run:
-          name: nothing serious
+          name: Code Has Arrived
           command: |
-            echo 'Gappy cofinf'
-            echo 'This is the delivery pipeline'
             ls -al
+            echo '^^^That should look familiar^^^'
+  Run-With-Node:
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - run:
+          name: Running In A Container With Node
+          command: |
+            node -v
+  Now-Complete:
+    docker:
+      - image: alpine:3.7
+    steps:
+      - run:
+          name: Approval Complete
+          command: |
+            echo 'Do work once the approval has completed'
+
 
 workflows:
-  version: 2
-  my_custom_workflow_next:
-    jobs:
-      - simple_build
-      - fix_build
+ version: 2
+ Example_Workflow:
+   jobs:
+     - Hello-World
+     - I-Have-Code:
+         requires:
+           - Hello-World
+     - Run-With-Node:
+         requires:
+           - Hello-World
+     - Hold-For-Approval:
+         type: approval
+         requires:
+           - Run-With-Node
+           - I-Have-Code
+     - Now-Complete:
+         requires:
+           - Hold-For-Approval
