@@ -9,6 +9,8 @@ jobs:
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
+            ls -al
+      - checkout
       - run:
           name: The Second step fattylee
           command: |
@@ -16,4 +18,4 @@ jobs:
             echo 'This is the delivery pipeline'
             ls -al
             # git --version
-            node -v
+            # node -v
