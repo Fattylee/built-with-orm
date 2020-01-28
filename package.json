@@ -80,11 +80,5 @@
   "lint-staged": {
     "**/*.{js,jsx}": "yarn lint",
     "**/*.{js,jsx,css,html,json,md,yml,yaml}": "yarn postlint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run test:stag"
-    }
   }
 }
