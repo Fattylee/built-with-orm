@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  test_build:
     docker:
       - image: alpine:3.7
     steps:
@@ -9,3 +9,11 @@ jobs:
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
+      - run:
+          name: The Second step fattylee
+          command: |
+            echo 'Hello World!'
+            echo 'This is the delivery pipeline'
+            ls -al
+            git --version
+            node -v
