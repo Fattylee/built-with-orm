@@ -15,5 +15,5 @@ jobs:
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
             ls -al
-            git --version
+            # git --version
             node -v
