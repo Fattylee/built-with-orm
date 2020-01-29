@@ -1,99 +1,40 @@
-# version: 2.1
-# jobs:
-#   Hello-World:
-#     docker:
-#       - image: alpine:3.7
-#     steps:
-#       - run:
-#           name: Hello World
-#           command: |
-#             echo 'Hello World!'
-#             echo 'This is the delivery pipeline'
-#   I-Have-Code:
-#     docker:
-#       - image: alpine:3.7
-#     steps:
-#       - checkout
-#       - run:
-#           name: Code Has Arrived
-#           command: |
-#             ls -al
-#             echo '^^^That should look familiar^^^'
-#   Run-With-Node:
-#     docker:
-#       - image: circleci/node:10-browsers
-#     steps:
-#       - run:
-#           name: Running In A Container With Node
-#           command: |
-#             node -v
-#   Now-Complete:
-#     docker:
-#       - image: alpine:3.7
-#     steps:
-#       - run:
-#           name: Approval Complete
-#           command: |
-#             echo 'Do work once the approval has completed'
-
-
-# workflows:
-#  version: 2
-#  Example_Workflow:
-#    jobs:
-#      - Hello-World
-#      - I-Have-Code:
-#          requires:
-#            - Hello-World
-#      - Run-With-Node:
-#          requires:
-#            - Hello-World
-#      - Hold-For-Approval:
-#          type: approval
-#          requires:
-#            - Run-With-Node
-#            - I-Have-Code
-#      - Now-Complete:
-#          requires:
-#            - Hold-For-Approval
-
-
-
-
 version: 2.1
-jobs:
-  build-one:
-    docker:
-      - image: circleci/node:13-browsers
-    steps:
-      - checkout
-      - run:
-          name: my first phase
-          command: |
-            echo this is $CIRCLE_USERNAME
-            echo env is $NODE_ENV
-            whoami
-            ls -al
-            echo "this is should be familiar^^^"
-  build-two:
-    docker:
-      - image: circleci/node:13-browsers
-    steps:
-      - checkout
-      - run:
-          name: my last command
-          command: |
-            echo this is $CIRCLE_USERNAME
-            echo env is $NODE_ENV
-            whoami
-            ls -al
-            echo "this is should be familiar^^^"
 
-# workflows:
-#   version: 2
-#   my_workflow:
-#     jobs:
-#       - build-two
-#       - build-one:
-#           requires:
-#           - build-two
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:13
+      - image: circleci/postgres:10
+        environment:
+          POSTGRES_USER: circleci
+          POSTGRES_DB: circleci
+    environment:
+      NODE_ENV: test
+      POSTGRES_USER: circleci
+      POSTGRES_DB: circleci
+      JWT_SECRET: sekrit
+    steps:
+      - run:
+          name: Install ltree extension for Postgres
+          command: |
+            sudo apt-get update
+            sudo apt-get install postgresql-client
+            dockerize -wait tcp://localhost:5432 -timeout 1m
+            psql -U circleci -h localhost -p 5432 -c 'create extension ltree'
+            whoami
+            ls -al
+      - checkout
+      - restore_cache:
+          key: v1-deps-{{ checksum "package.json" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-deps-{{ checksum "package.json" }}
+      - run: psql -c '\conninfo'
