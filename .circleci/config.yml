@@ -32,9 +32,9 @@ jobs:
       - checkout
       - restore_cache:
           key: v1-deps-{{ checksum "package.json" }}
-      - run: yarn install
+      - run: npm install
       - save_cache:
           paths:
             - node_modules
           key: v1-deps-{{ checksum "package.json" }}
-      - run: psql -c '\conninfo'
+      - run: psql -c '\conninfo' -U circleci -h localhost -p 5432
