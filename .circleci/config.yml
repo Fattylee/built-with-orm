@@ -89,11 +89,11 @@ jobs:
             ls -al
             echo "this is should be familiar^^^"
 
-workflows:
-  version: 2
-  my_workflow:
-    jobs:
-      - build-two
-      - build-one:
-          requires:
-          - build-two
+# workflows:
+#   version: 2
+#   my_workflow:
+#     jobs:
+#       - build-two
+#       - build-one:
+#           requires:
+#           - build-two
