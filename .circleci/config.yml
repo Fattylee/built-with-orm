@@ -73,4 +73,5 @@ jobs:
             echo this is $CIRCLE_USERNAME
             echo env is $NODE_ENV
             whoami
-            l
+            ls -al
+            echo "^^^this is should be familiar^^^"
