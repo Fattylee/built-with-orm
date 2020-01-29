@@ -68,9 +68,9 @@ jobs:
     steps:
       - checkout
       - run:
-        name: my first phase
-        command: |
-          echo this is $CIRCLE_NAME
-          echo env is $NODE_ENV
-          whoami
-          l
+          name: my first phase
+          command: |
+            echo this is $CIRCLE_NAME
+            echo env is $NODE_ENV
+            whoami
+            l
