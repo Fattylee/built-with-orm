@@ -64,13 +64,13 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node-browsers
+      - image: circleci/node:13-browsers
     steps:
       - checkout
       - run:
           name: my first phase
           command: |
-            echo this is $CIRCLE_NAME
+            echo this is $CIRCLE_USERNAME
             echo env is $NODE_ENV
             whoami
             l
