@@ -62,7 +62,7 @@
 
 version: 2.1
 jobs:
-  build:
+  build-one:
     docker:
       - image: circleci/node:13-browsers
     steps:
@@ -74,4 +74,26 @@ jobs:
             echo env is $NODE_ENV
             whoami
             ls -al
-            echo "^^^this is should be familiar^^^"
+            echo "this is should be familiar^^^"
+  build-two:
+    docker:
+      - image: circleci/node:13-browsers
+    steps:
+      - checkout
+      - run:
+          name: my last command
+          command: |
+            echo this is $CIRCLE_USERNAME
+            echo env is $NODE_ENV
+            whoami
+            ls -al
+            echo "this is should be familiar^^^"
+
+workflows:
+  version: 2
+  my_workflow:
+    jobs:
+      - build-two
+      - build-one:
+          requires:
+          - build-two
