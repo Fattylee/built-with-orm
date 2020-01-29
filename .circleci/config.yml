@@ -38,3 +38,7 @@ jobs:
             - node_modules
           key: v1-deps-{{ checksum "package.json" }}
       - run: psql -c '\conninfo' -U circleci -h localhost -p 5432
+      - run:
+          name: run all my test
+          command: |
+            yarn test:circleci
