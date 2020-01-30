@@ -9,6 +9,7 @@
     "test:nodemon": "NODE_ENV=test nodemon --exec \"mocha  -r @babel/register\"",
     "test:hooks": "NODE_ENV=test nyc mocha -r @babel/register --ignore '*.md'",
     "staging": "NODE_ENV=staging mocha -r @babel/register ",
+    "test:stag": "jest --verbose --coverage",
     "test:circleci": "NODE_ENV=staging jest ",
     "test:jest": "cross-env NODE_ENV=test jest --verbose --watchAll",
     "start": "cross-env DEBUG=active node server/bundle/server.js",
