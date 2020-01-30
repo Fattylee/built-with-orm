@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "ppre-commit": "lint-staged",
-    "ppre-push": "npm run test:stag"
+    "pre-commit": "lint-staged",
+    "pre-push": "npm run test:stag"
   }
 }
