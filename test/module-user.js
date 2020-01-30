@@ -17,18 +17,13 @@ const div = (num1, num2) => num1 / num2;
 
 const cbm = (a, b, cb) => cb(a + b, a * b);
 
-const style = cb => {
-  console.log('first line of style');
-  return cb('hello world', 567);
-};
+const style = cb => cb('hello world', 567);
 
 export {
   cbm, forEach, div, Users as default,
 };
 
-console.log(
-  style((first, sec) => {
-    console.log(sec, 'this is the first arguement', first);
-    console.log(sec, 'next one to this', first);
-  }),
-);
+style((first, sec) => {
+  // console.log(sec, 'this is the first arguement', first);
+  // console.log(sec, 'next one to this', first);
+});

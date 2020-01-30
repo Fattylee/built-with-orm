@@ -1,4 +1,7 @@
 language: node_js
+test:
+  adapter: postgresql
+  database: travis_ci_
 os: linux
 node_js:
   - 'stable'

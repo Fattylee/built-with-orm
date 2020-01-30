@@ -10,20 +10,17 @@
     "test:hooks": "NODE_ENV=test nyc mocha -r @babel/register --ignore '*.md'",
     "staging": "NODE_ENV=staging mocha -r @babel/register ",
     "test:stag": "jest --verbose --coverage",
-    "test:mark": "export NODE_ENV=test && jest --verbose --coverage",
-    "test:circleci": "export NODE_ENV=staging && jest --verbose --coverage",
+    "test:circleci": "NODE_ENV=staging jest ",
     "test:jest": "cross-env NODE_ENV=test jest --verbose --watchAll",
     "start": "cross-env DEBUG=active node server/bundle/server.js",
     "start:dev": "npm run bundle && cross-env DEBUG=active NODE_ENV=development node server/bundle/server.js",
     "dev": "./node_modules/.bin/cross-env DEBUG=active NODE_ENV=development nodemon --exec \"../node_modules/.bin/babel-node server/src/server.js\" -w server",
     "dev:stag": "./node_modules/.bin/cross-env DEBUG=active NODE_ENV=staging nodemon --exec \"../node_modules/.bin/babel-node server/src/server.js\" -w server",
-    "bundle": "../node_modules/.bin/babel server/src -d server/bundle",
     "trans:client": "../node_modules/.bin/babel client/ -d public/js --verbose -w",
-    "live-server": "live-server public",
     "client": "concurrently \"npm run trans:client\" \"npm run live-server\"",
     "full": "concurrently \"npm run dev\" \"npm run trans:client\" \"npm run live-server\" \"npm run browserify\"",
     "browserify": "nodemon --exec \"browserify public/js/index.js -o public/js/bundle.js \" -w public/js/index.js",
-    "postinstall": "./node_modules/.bin/babel server/src -d server/bundle",
+    "postinstall": "babel server/src -d server/bundle",
     "lint": "eslint  --fix",
     "postlint": "prettier-eslint --write"
   },
@@ -78,15 +75,7 @@
   "author": "Fatai Balogun",
   "license": "ISC",
   "lint-staged": {
-    "**/*.{js,jsx,css,md,html}": [
-      "yarn lint",
-      "yarn postlint"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run test:stag"
-    }
+    "**/*.{js,jsx}": "yarn lint",
+    "**/*.{js,jsx,css,html,json,md,yml,yaml}": "yarn postlint"
   }
 }

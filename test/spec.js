@@ -12,13 +12,16 @@ describe('my app', () => {
     // this.timeout(25000);
     await syncAndSeed();
   });
+
   beforeEach(() => {
     /* eslint-disable-next-line */
     // appIndex = require("../server/src/index");
   });
+
   afterEach(() => {
     // appIndex.close();
   });
+
   describe('Get /', () => {
     it('should return nice obj', () => {
       const obj = { name: 'abu', age: 32 };
@@ -26,10 +29,12 @@ describe('my app', () => {
       expect(obj).toMatchObject({ name: 'abu', age: 32 });
       expect(obj).toEqual({ name: 'abu', age: 32 });
     });
+
     it('test GET /baba', async () => {
       const res = await request.get('/baba');
       expect(res.header['content-type']).toContain('html');
     });
+
     it('send bab', async () => {
       // this.timeout(16000);
       // this.timeout(9000);
@@ -38,21 +43,25 @@ describe('my app', () => {
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('data', 'hurray');
     });
+
     it('returns foo bar', async () => {
       // expect(response.body.data).toBe('foo bar');
       // expect(response.body.data).to.equal('foo ar');
       // throw Error('failure on purpose');
     });
+
     it('should succeed on a . den', () => request
       .get('/foo')
       .expect(200)
       .then(res => expect(res.body.data).toBe('foo bar')));
+
     it('should bar from foo body', () => request
       .post('/foo')
       .send({ foo: 'bar' })
       .expect(201)
       .then(res => expect(res.body.data).toBe('BAR')));
   });
+
   describe('Get head', () => {
     it('set header', () => request
       .get('/head')
@@ -62,7 +71,9 @@ describe('my app', () => {
         expect(res.text).toBe('lulu');
       }));
   });
+
   describe('Get api/v1', () => {
+    jest.setTimeout(39000);
     it('get all categories', () => request
       .get('/api/v1/categories')
       .expect(200)
@@ -70,13 +81,16 @@ describe('my app', () => {
         expect(res.body.some(c => c.name === 'category a')).toBeTruthy();
         expect(res.body.some(c => c.name === 'category f')).toBeFalsy();
       }));
-    it('get all products', () => request
-      .get('/api/v1/products')
-      .expect(200)
-      .then(res => {
-        expect(res.body.length).toBe(7);
-      }));
-    it('should return exceptions', () => request.get('/api/v1/products'));
+    it('get all products', done => {
+      request
+        .get('/api/v1/products')
+        .expect(200)
+        .then(res => {
+          expect(res.body.length).toBe(7);
+          done();
+        });
+    });
+    // it('should return exceptions', () => request.get('/api/v1/products'));
   });
   it('freestyle', () => {
     const obj = 'abu is assiduos';
@@ -152,6 +166,26 @@ describe('my app', () => {
       // setTimeout(() => {});
       const res = await getMe;
       expect(res).toBe(33);
+    });
+  });
+
+  it('hello world', () => {
+    const callBackFn = cb => cb(7);
+    const mockFunc = jest.fn();
+    callBackFn(mockFunc);
+    expect(mockFunc).toBeCalledWith(expect.any(Number));
+    expect(34).toEqual(expect.any(Number));
+    expect({ a: 4, b: 'hello' }).toEqual(
+      expect.objectContaining({ a: expect.any(Number) }),
+    );
+    expect({ b: 3, c: 21, a: 21 }).toEqual({
+      b: 3,
+      c: expect.anything(),
+      a: 21,
+    });
+    expect({ b: 3, c: 21, a: 21 }).toMatchObject({
+      b: 3,
+      c: expect.anything(),
     });
   });
 });
